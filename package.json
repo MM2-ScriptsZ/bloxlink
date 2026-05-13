@@ -2,8 +2,12 @@
   "name": "iframe-proxy",
   "version": "1.0.0",
   "description": "Universal iframe proxy",
+  "type": "module",
   "scripts": {
     "dev": "vercel dev",
-    "build": "echo Build complete"
+    "build": "echo 'Build complete'"
+  },
+  "engines": {
+    "node": "18.x"
   }
 }
