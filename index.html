@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Iframe Proxy</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
   body { 
@@ -36,90 +37,60 @@
 <body>
     <div class="h-screen overflow-y-auto" style="display:block;width:100%;height:100vh;overflow:auto">
         <div class="min-h-screen" style="display:block;width:100%;min-height:100vh">
-            <!-- Navigation -->
             <nav id="main-navbar" class="py-4 border-b" style="border-bottom:1px solid rgb(41, 51, 65);display:block;width:100%;padding:16px 0px">
                 <div class="max-w-7xl flex items-center mx-auto px-4 gap-4" style="display:flex;width:100%;max-width:1280px;align-items:center;padding:0 16px">
-                    <a class="mb-1" href="" style="display:block;width:40px;height:40px;margin-bottom:4px">
-                        <span class="sr-only" style="position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden">Iframe Proxy</span>
-                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%235865f2'%3E%3Crect width='24' height='24' rx='4'/%3E%3Ctext x='12' y='16' text-anchor='middle' fill='white' font-size='12' font-weight='bold'%3EiF%3C/text%3E%3C/svg%3E" alt="Proxy logo" style="width:40px; height:40px; display:block;" />
-                    </a>
-                    <h1 style="color:rgb(255, 255, 255);font-size:24px;font-weight:800;margin:0">Iframe Proxy</h1>
+                    <h1 style="color:rgb(255, 255, 255);font-size:24px;font-weight:800;margin:0">🔗 Iframe Proxy</h1>
                 </div>
             </nav>
 
-            <!-- Main Content -->
             <div class="my-4 px-4" style="display:block;width:100%;margin:16px 0px;padding:0 16px">
                 <div class="max-w-7xl mx-auto" style="max-width:1280px;margin:0 auto">
                     <div style="display:flex;flex-direction:column;gap:24px">
                         
-                        <!-- URL Input Section -->
                         <div class="bg-gray-800 rounded-lg p-6" style="background:rgb(31, 41, 55);border-radius:8px;padding:24px">
                             <h2 class="text-2xl font-bold text-white mb-4" style="color:rgb(255, 255, 255);font-size:24px;font-weight:700;margin-bottom:16px">
                                 Load Any URL in Iframe
                             </h2>
                             <p class="text-gray-400 mb-6" style="color:rgb(156, 163, 175);margin-bottom:24px">
-                                Enter any URL below (Roblox, Bloxlink, or any other website) to load it in an iframe
+                                Enter any URL to load it in an iframe (bypasses X-Frame-Options)
                             </p>
                             
                             <div class="flex gap-2" style="display:flex;gap:8px;flex-wrap:wrap">
                                 <input 
                                   id="urlInput" 
                                   type="text" 
-                                  placeholder="https://bloxlink.pw/verify?username=YourUsername" 
-                                  class="flex-1 rounded-md px-4 py-2 bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                  style="flex:1;border-radius:6px;padding:8px 16px;background:rgb(55, 65, 81);color:rgb(255, 255, 255);font-size:14px;border:none"
+                                  placeholder="https://example.com" 
+                                  class="flex-1 rounded-md px-4 py-2 bg-gray-700 text-white"
+                                  style="flex:1;border-radius:6px;padding:8px 16px;background:rgb(55, 65, 81);color:rgb(255, 255, 255);font-size:14px;border:none;min-width:200px"
                                   value="https://bloxlink.pw/verify?username=test"
                                 />
                                 <button 
                                   id="loadBtn" 
                                   onclick="loadUrl()"
-                                  class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-6 rounded-md transition-colors"
+                                  class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-6 rounded-md"
                                   style="background:rgb(59, 130, 246);padding:8px 24px;border-radius:6px;color:rgb(255, 255, 255);font-weight:600;border:none;cursor:pointer"
                                 >
-                                  Load URL
+                                  Load
                                 </button>
-                            </div>
-
-                            <!-- Quick Links -->
-                            <div class="mt-6" style="margin-top:24px">
-                                <p class="text-gray-400 text-sm mb-3" style="color:rgb(156, 163, 175);font-size:14px;margin-bottom:12px">Quick links:</p>
-                                <div class="flex flex-wrap gap-2" style="display:flex;gap:8px;flex-wrap:wrap">
-                                  <button onclick="setUrl('https://bloxlink.pw/verify?username=test')" class="bg-gray-700 hover:bg-gray-600 text-white py-1 px-3 rounded text-sm" style="background:rgb(55, 65, 81);padding:4px 12px;border-radius:6px;color:rgb(255, 255, 255);font-size:14px;border:none;cursor:pointer">Bloxlink Verify</button>
-                                  <button onclick="setUrl('https://www.roblox.com')" class="bg-gray-700 hover:bg-gray-600 text-white py-1 px-3 rounded text-sm" style="background:rgb(55, 65, 81);padding:4px 12px;border-radius:6px;color:rgb(255, 255, 255);font-size:14px;border:none;cursor:pointer">Roblox.com</button>
-                                  <button onclick="setUrl('https://www.google.com')" class="bg-gray-700 hover:bg-gray-600 text-white py-1 px-3 rounded text-sm" style="background:rgb(55, 65, 81);padding:4px 12px;border-radius:6px;color:rgb(255, 255, 255);font-size:14px;border:none;cursor:pointer">Google</button>
-                                </div>
                             </div>
                         </div>
 
-                        <!-- Iframe Section -->
                         <div class="bg-gray-800 rounded-lg overflow-hidden" style="background:rgb(31, 41, 55);border-radius:8px;overflow:hidden">
                             <div class="bg-gray-700 px-4 py-3 border-b border-gray-600" style="background:rgb(55, 65, 81);padding:12px 16px;border-bottom:1px solid rgb(75, 85, 99)">
                                 <p class="text-sm text-gray-400" style="color:rgb(156, 163, 175);font-size:14px;margin:0">
-                                  Loaded URL: <span id="currentUrl" class="text-blue-400" style="color:rgb(96, 165, 250)">None</span>
+                                  URL: <span id="currentUrl" class="text-blue-400" style="color:rgb(96, 165, 250)">Loading...</span>
                                 </p>
                             </div>
-                            <div class="relative" style="position:relative;width:100%;height:600px;overflow:hidden">
+                            <div class="relative" style="position:relative;width:100%;height:600px;overflow:hidden;background:rgb(255,255,255)">
                               <div id="loadingSpinner" style="display:none;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:100">
-                                <div class="spinner" style="border:4px solid rgba(255, 255, 255, 0.3);border-top:4px solid #fff;border-radius:50%;width:40px;height:40px;animation:spin 1s linear infinite"></div>
+                                <div class="spinner" style="border:4px solid rgba(0, 0, 0, 0.1);border-top:4px solid #333;border-radius:50%;width:40px;height:40px"></div>
                               </div>
                               <iframe 
                                 id="contentIframe" 
                                 style="width:100%;height:100%;border:none;display:block"
-                                sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-modals allow-presentation"
+                                sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-modals allow-presentation allow-top-navigation"
                               ></iframe>
                             </div>
-                        </div>
-
-                        <!-- Info Section -->
-                        <div class="bg-blue-500/10 border border-blue-500/30 rounded-lg p-4" style="background:rgba(59, 130, 246, 0.1);border:1px solid rgba(59, 130, 246, 0.3);border-radius:8px;padding:16px">
-                            <h3 class="text-blue-400 font-semibold mb-2" style="color:rgb(96, 165, 250);font-weight:600;margin-bottom:8px">How it works:</h3>
-                            <ul class="text-gray-300 text-sm space-y-1" style="color:rgb(209, 213, 219);font-size:14px">
-                              <li>✓ Bypasses X-Frame-Options restrictions</li>
-                              <li>✓ Works with any URL (Roblox, Bloxlink, etc.)</li>
-                              <li>✓ Server-side proxy removes frame blocking headers</li>
-                              <li>✓ Secure sandbox environment</li>
-                              <li>✓ No external dependencies required</li>
-                            </ul>
                         </div>
                     </div>
                 </div>
@@ -133,10 +104,6 @@
         const iframe = document.getElementById('contentIframe');
         const currentUrlDisplay = document.getElementById('currentUrl');
         const loadingSpinner = document.getElementById('loadingSpinner');
-
-        function setUrl(url) {
-            urlInput.value = url;
-        }
 
         function loadUrl() {
             const userUrl = urlInput.value.trim();
@@ -154,28 +121,28 @@
             loadingSpinner.style.display = 'block';
             loadBtn.disabled = true;
             loadBtn.style.opacity = '0.6';
+            currentUrlDisplay.textContent = 'Loading...';
 
             try {
-                // Use the proxy API
                 const proxyUrl = `/api/iframe-proxy?url=${encodeURIComponent(userUrl)}`;
                 
                 iframe.onload = function() {
                     loadingSpinner.style.display = 'none';
                     loadBtn.disabled = false;
                     loadBtn.style.opacity = '1';
+                    currentUrlDisplay.textContent = userUrl;
                 };
 
                 iframe.onerror = function() {
                     loadingSpinner.style.display = 'none';
                     loadBtn.disabled = false;
                     loadBtn.style.opacity = '1';
-                    alert('Failed to load URL. Make sure it\'s a valid web address.');
+                    currentUrlDisplay.textContent = 'Error loading URL';
+                    alert('Failed to load URL');
                 };
 
                 iframe.src = proxyUrl;
-                currentUrlDisplay.textContent = userUrl;
 
-                // Set timeout in case iframe doesn't load
                 setTimeout(() => {
                     if (loadingSpinner.style.display !== 'none') {
                         loadingSpinner.style.display = 'none';
@@ -185,21 +152,17 @@
                 }, 10000);
             } catch (error) {
                 console.error('Error:', error);
-                alert('Error loading URL: ' + error.message);
                 loadingSpinner.style.display = 'none';
                 loadBtn.disabled = false;
                 loadBtn.style.opacity = '1';
+                currentUrlDisplay.textContent = 'Error: ' + error.message;
             }
         }
 
-        // Allow Enter key to load URL
         urlInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                loadUrl();
-            }
+            if (e.key === 'Enter') loadUrl();
         });
 
-        // Load default on page load
         window.addEventListener('load', () => {
             loadUrl();
         });
