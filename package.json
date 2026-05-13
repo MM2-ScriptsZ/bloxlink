@@ -1,13 +1,9 @@
 {
-  "name": "universal-iframe-proxy",
+  "name": "iframe-proxy",
   "version": "1.0.0",
-  "description": "Universal iframe proxy for any URL",
+  "description": "Universal iframe proxy",
   "scripts": {
     "dev": "vercel dev",
-    "build": "echo 'Build complete'",
-    "deploy": "vercel deploy --prod"
-  },
-  "keywords": ["iframe", "proxy", "roblox", "vercel"],
-  "author": "",
-  "license": "MIT"
+    "build": "echo Build complete"
+  }
 }
